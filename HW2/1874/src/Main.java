@@ -115,14 +115,14 @@ public class Main {
 				array[i] = sc.nextInt();} //3. 1에서 n까지의 수열이 넣어진다.	
 			sc.close();
 
-			int m=0;			
+			int k=0;			
 			for(int i=0; i<n;i++) { //4. 1에서 n까지 스택에 넣는다. 
 				stack.push(i);
 				pm.add("+");
-					while(!stack.empty()&&stack.top()==array[m]) {//5. array[m]에 있는 수와 일치하면 빼내고 m++(단, stack이 비어있지 않단 가정하에)
+					while(stack.top()==array[k]&&!stack.empty()) {//5. array[k]에 있는 수와 일치하면 빼내고 k++(단, stack이 비어있지 않단 가정하에)
 						stack.pop();
 						pm.add("-");
-						m++;}
+						k++;}
 					}
 			
 			if(stack.empty()) {
