@@ -106,29 +106,41 @@ public class Main {
 		ArrayList pm = new ArrayList();//plus,minus를 출력할 pm 생성
 				
 		System.out.println("1<=n<=100000의 n을 입력하세요.");
-		int n = sc.nextInt();//1. n 정수 입력받는다.
+		int n = sc.nextInt();
 		
 		if(1<=n && n<=100000) {
-		int array[] = new int[n]; // 2. 수열을 넣을 수 있는 배열을 생성한다. 
+		int array[] = new int[n];
 		System.out.println("수열을 입력하세요.");
 			for (int i=0; i<n; i++) {
-				array[i] = sc.nextInt();} //3. 1에서 n까지의 수열이 넣어진다.	
-			sc.close();
-
-			int k=0;			
-			for(int i=0; i<n;i++) { //4. 1에서 n까지 스택에 넣는다. 
-				stack.push(i);
-				pm.add("+");
-					while(stack.top()==array[k]&&!stack.empty()) {//5. array[k]에 있는 수와 일치하면 빼내고 k++(단, stack이 비어있지 않단 가정하에)
-						stack.pop();
-						pm.add("-");
-						k++;}
-					}
+				array[i] = sc.nextInt();} 
+			sc.close();		
 			
-			if(stack.empty()) {
-				  for (int i=0; i<pm.size(); i++) {
-					   System.out.println(pm.get(i));}
-					  } //6. stack이 비면 arrayList pm을 출력, stack이 안비면 "NO"출력.
+			int k=0;
+			boolean isValid = true;
+			
+			for(int i=0; i<n;i++) { 
+				int a = array[i];				
+				if(isValid) {
+					while(k<=a) {
+						stack.push(k++);
+						pm.add("+");
+					}
+					
+					if(stack.empty()) {
+						isValid = false;
+					} else {
+						while(!stack.empty()&&stack.top()>=a) {
+							stack.pop();
+							pm.add("-");}
+						}
+					}
+				}
+			
+			
+			if(isValid) { 
+			for (int i=0; i<pm.size(); i++) {
+					   System.out.println(pm.get(i));}}
+					 
 			else {
 				System.out.println("NO");
 			}
