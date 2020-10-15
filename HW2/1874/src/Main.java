@@ -115,7 +115,7 @@ public class Main {
 				array[i] = sc.nextInt();} 
 			sc.close();		
 			
-			int k=0;
+			int k=1;
 			boolean isValid = true;
 			
 			for(int i=0; i<n;i++) { 
